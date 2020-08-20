@@ -13,8 +13,11 @@ body {
   
 }
 header {
-  text-align: center;
-  
+  text-align: center; 
+}
+menu {
+  display: flex;
+  justify-content: space-around;
 }
 menu a{
   color:  #09DBB7;
@@ -22,19 +25,65 @@ menu a{
 .central {
   min-height: 250px;
 }
-
 a {
   text-decoration: none;
   cursor: pointer;
   color:  #fff;
 }
+.movies {
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.favorite-movies {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.french-movies {
+  font-size: 1.2em;
+}
+
+/* ////////// -FORM ADD A MOVIE- //////////*/
+
+.form-add-container {
+  margin: 1em auto;
+  display: flex;
+  flex-direction: column;
+  background:#09DBB7;
+  border-radius: 15px;
+  padding: 1em;
+}
+.form-add {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+}
+.form-add-legend {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+.form-add input { 
+  border-radius: 10px;
+  border: none;
+  padding: .5em;
+  margin-bottom: 1em;
+  background-color: #F5F5F5;
+}
+.form-add button { 
+  border-radius: 10px;
+  border: none;
+  padding: .5em;
+  width: 60%;
+  margin: 0 auto;
+}
+
+/* ////////// -FOOTER- ////////// */
+
 footer {
-  
-  
   text-align: center;
   margin-top:auto;
   background-color: #212128;
   padding: 1em;
-  
- 
 }
