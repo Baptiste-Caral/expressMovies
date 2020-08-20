@@ -18,8 +18,10 @@ header {
 menu {
   display: flex;
   justify-content: space-around;
+  border-bottom: 1px solid #09DBB7;
 }
 menu a{
+  margin-bottom: 1em;
   color:  #09DBB7;
 }
 .central {
@@ -50,7 +52,7 @@ a {
   margin: 1em auto;
   display: flex;
   flex-direction: column;
-  background:#09DBB7;
+  background:#2A2A2A;
   border-radius: 15px;
   padding: 1em;
 }
@@ -65,11 +67,11 @@ a {
   font-weight: 600;
 }
 .form-add input { 
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
   padding: .5em;
   margin-bottom: 1em;
-  background-color: #F5F5F5;
+  background-color: #212121;
 }
 .form-add button { 
   border-radius: 10px;
@@ -77,6 +79,8 @@ a {
   padding: .5em;
   width: 60%;
   margin: 0 auto;
+  color: #fff;
+  background-color: #09DBB7;
 }
 
 /* ////////// -FOOTER- ////////// */
@@ -84,6 +88,6 @@ a {
 footer {
   text-align: center;
   margin-top:auto;
-  background-color: #212128;
   padding: 1em;
+  color: #09DBB7;
 }
