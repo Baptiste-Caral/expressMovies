@@ -1,0 +1,26 @@
+<%- include('./partials/header') -%>
+		<div class="central">
+			<br>
+			<div id="login">
+				<form>
+					<legend>Veuillez saisir vos identifiants</legend>
+					<label for="email">email</label>
+					<input type="text" name="email" id="email">
+					<label for="password">mot de passe</label>
+					<input type="password" name="password" id="password">
+					<button type="submit">connexion</button>
+				</form>
+			</div>
+          <br>
+          <div id="profile" style="display:none">
+              <button id="display-payload">voir le payload</button>
+              <button id="disconnectBtn">déconnexion</button>
+              <div id="decoded-payload"></div>
+              <div>
+								<a href="#" id="member-only">expace membre</a>
+								<div id="member-data"></div>
+              </div>
+          </div>
+		</div>
+		<%- include('./partials/footer') -%>
+		<script src="public/login.js"></script>

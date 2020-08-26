@@ -3,13 +3,13 @@ const app = express()
 const bodyParser = require('body-parser')
 const multer = require('multer')
 const upload = multer()
+const jwt = require('jsonwebtoken')
 
 const PORT = 3001
 let frenchMovies = []
 
 // Middleware pour les chemins public (css)
 app.use('/public', express.static('public'))
-
 
 app.set('views', './views')
 app.set('view engine', 'ejs')
@@ -26,17 +26,6 @@ app.get('/movies', (req, res) => {
 
 // récupere le contenue du body d'une requete Post
 let urlencodeParser = bodyParser.urlencoded({ extended: false })
-
-// app.post('/movies', urlencodeParser, (req,res) => {
-  
-  
-//   console.log(req.body)
-//   const newMovie = { title: req.body.movietitle, year: req.body.movieyear }
-//   // ajoute le newMovie dans le tableau frenchMovies équivaut à: frenchMovies.push(newMovie)
-//   frenchMovies = [...frenchMovies, newMovie]
-//   console.log(frenchMovies);
-//   res.sendStatus(201)
-// })
 
 app.post('/movies', upload.fields([]), (req, res) => {
   if(!req.body) {
@@ -56,6 +45,27 @@ app.get('/movies/add', (req, res) => {
 })
 app.get('/movie-search', (req, res) => {
   res.render('movie-search')
+})
+app.get('/login', (req, res) => {
+  res.render('login')
+})
+
+const fakeUser = {email: 'dtc@dtc.com', password: 'dtc'}
+const secret = 'qsdjS12ozehdoIJ123DJOZJLDSCqsdeffdg123ER56SDFZedhWXojqshduzaohduihqsDAqsdq';
+
+app.post('/login', urlencodeParser, (req, res) => {
+ 
+  if(!req.body) {
+    res.sendStatus(500)
+  } else {
+    if(fakeUser.email === req.body.email && fakeUser.password === req.body.password) {
+      const myToken = jwt.sign({iss: 'http://expressmovies.fr', user: 'caral', scope: 'moderator'}, secret)
+      res.json(myToken)
+      
+    } else {
+      res.sendStatus(401)
+    }
+  }
 })
 
 app.get('/movies/:id/', (req, res) => {
