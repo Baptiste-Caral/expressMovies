@@ -6,6 +6,9 @@ var profileArea = document.querySelector('#profile')
 var disconnectBtn = document.getElementById('disconnectBtn')
 disconnectBtn.addEventListener('click', disconnect)
 var connectionLinkArea = document.querySelector('#connectionLink')
+var displayPayloadBtn = document.querySelector('#display-payload')
+displayPayloadBtn.addEventListener('click', displayPayload)
+
 handleFormDisplay();
 
 
@@ -54,6 +57,42 @@ function switchToLoggedOutMode() {
 	profileArea.style.display = 'none'
 	connectionLinkArea.innerHTML = '<a href="/login">connexion</a>'
 }
+// return JWT payload
+function displayPayload() {
+
+	var payload = parseJwt()
+	var decodedPayloadArea = document.querySelector('#decoded-payload')
+	var isEmpty = document.getElementById('decoded-payload').innerHTML === "";
+	
+	for (var [key, value] of Object.entries(payload)){
+		let payLoadItemDiv = document.createElement('div')
+
+		if (isEmpty) {
+			
+			payLoadItemDiv.innerHTML = (`<div>${key}: ${value}</div>`)
+			decodedPayloadArea.appendChild(payLoadItemDiv)
+			displayPayloadBtn.innerHTML = 'cacher le payload'
+			
+		} else {
+			
+			decodedPayloadArea.innerHTML = ("")
+			displayPayloadBtn.innerHTML = 'voir le payload'
+			
+		}	
+	}
+}
+// Extract Payload from JWT
+
+function parseJwt() {
+	var tokenFromStorage = localStorage.getItem('token')
+	if (tokenFromStorage) {
+		var base64Payload = tokenFromStorage.split('.')[1]
+		return JSON.parse(window.atob(base64Payload))
+	} else {
+		return 'no token to parse'
+	}
+}
+
 function disconnect() {
 	switchToLoggedOutMode()
 	localStorage.removeItem('token')
